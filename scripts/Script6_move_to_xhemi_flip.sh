@@ -35,9 +35,9 @@ do
     mris_apply_reg --src  "$s"/surf/lh."$m"_z.sm10.mgh --trg "$s"/xhemi/surf/lh."$m"_z_on_lh.sm10.mgh  --streg $SUBJECTS_DIR/"$s"/surf/lh.sphere.reg     $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     mris_apply_reg --src "$s"/surf/rh."$m"_z.sm10.mgh --trg "$s"/xhemi/surf/rh."$m"_z_on_lh.sm10.mgh    --streg $SUBJECTS_DIR/"$s"/xhemi/surf/lh.fsaverage_sym.sphere.reg     $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     # Calculate interhemispheric asymmetry
-    mris_calc --output "$s"/xhemi/surf/lh.lh-rh."$m"_z.sm10.mgh "$s"/xhemi/surf/lh."$m"_z_on_lh.sm10.mgh sub "$s"/xhemi/surf/rh."$m"_z_on_lh.sm10.mgh
+    mris_calc --output "$s"/xhemi/surf/lh.asym."$m"_z.sm10.mgh "$s"/xhemi/surf/lh."$m"_z_on_lh.sm10.mgh sub "$s"/xhemi/surf/rh."$m"_z_on_lh.sm10.mgh
     # invert interhemisphereic asymmetry
-    mris_calc --output "$s"/xhemi/surf/rh.lh-rh."$m"_z.sm10.mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.lh-rh."$m"_z.sm10.mgh
+    mris_calc --output "$s"/xhemi/surf/rh.asym."$m"_z.sm10.mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.asym."$m"_z.sm10.mgh
   done
 
   for m2 in $Measures2
@@ -47,9 +47,9 @@ do
     mris_apply_reg --src  "$s"/surf/lh."$m"_z.sm20.mgh --trg "$s"/xhemi/surf/lh."$m"_z_on_lh.sm20.mgh  --streg $SUBJECTS_DIR/"$s"/surf/lh.sphere.reg     $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     mris_apply_reg --src "$s"/surf/rh."$m"_z.sm20.mgh --trg "$s"/xhemi/surf/rh."$m"_z_on_lh.sm20.mgh    --streg $SUBJECTS_DIR/"$s"/xhemi/surf/lh.fsaverage_sym $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     # Calculate interhemispheric asymmetry
-    mris_calc --output "$s"/xhemi/surf/lh.lh-rh."$m"_z.sm20.mgh "$s"/xhemi/surf/lh."$m"_z_on_lh.sm20.mgh sub "$s"/xhemi/surf/rh."$m"_z_on_lh.sm20.mgh
+    mris_calc --output "$s"/xhemi/surf/lh.asym."$m"_z.sm20.mgh "$s"/xhemi/surf/lh."$m"_z_on_lh.sm20.mgh sub "$s"/xhemi/surf/rh."$m"_z_on_lh.sm20.mgh
     # invert interhemisphereic asymmetry
-    mris_calc --output "$s"/xhemi/surf/rh.lh-rh."$m"_z.sm20.mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.lh-rh."$m"_z.sm20.mgh
+    mris_calc --output "$s"/xhemi/surf/rh.asym."$m"_z.sm20.mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.asym."$m"_z.sm20.mgh
   done
 
   for m3 in $Measures3
@@ -59,8 +59,8 @@ do
     mris_apply_reg --src  "$s"/surf/lh."$m3".mgh --trg "$s"/xhemi/surf/lh."$m3"_on_lh.mgh  --streg $SUBJECTS_DIR/"$s"/surf/lh.sphere.reg     $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     mris_apply_reg --src "$s"/surf/rh."$m3".mgh --trg "$s"/xhemi/surf/rh."$m3"_on_lh.mgh    --streg $SUBJECTS_DIR/"$s"/xhemi/surf/lh.fsaverage_sym.sphere.reg     $SUBJECTS_DIR/fsaverage_sym/surf/lh.sphere.reg
     # Asymmetry
-    mris_calc --output "$s"/xhemi/surf/lh.lh-rh."$m3".mgh "$s"/xhemi/surf/lh."$m3"_on_lh.mgh sub "$s"/xhemi/surf/rh."$m3"_on_lh.mgh
-    mris_calc --output "$s"/xhemi/surf/rh.lh-rh."$m3".mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.lh-rh."$m3".mgh
+    mris_calc --output "$s"/xhemi/surf/lh.asym."$m3".mgh "$s"/xhemi/surf/lh."$m3"_on_lh.mgh sub "$s"/xhemi/surf/rh."$m3"_on_lh.mgh
+    mris_calc --output "$s"/xhemi/surf/rh.asym."$m3".mgh "$s"/xhemi/surf/zeros.mgh sub "$s"/xhemi/surf/lh.asym."$m3".mgh
 
   done
 
